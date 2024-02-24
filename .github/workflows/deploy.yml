@@ -21,17 +21,11 @@ jobs:
 
     - name: Build project
       run: npm run build
-
-    - name: List working directory contents
-      run: ls -la
       
     - name: Setup SSH known_hosts
       run: |
         mkdir -p ~/.ssh
         ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
-
-    - name: List contents of dist
-      run: ls -la ./dist
 
     - name: Deploy to DigitalOcean
       uses: appleboy/ssh-action@v0.1.2
@@ -40,4 +34,4 @@ jobs:
         username: ${{ secrets.SSH_USERNAME }}
         key: ${{ secrets.SSH_KEY }}
         script: |
-          scp -r ./dist/ ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:/var/www/usual/Usual.dev/
+          cd /var/www/usual/Usual.dev
