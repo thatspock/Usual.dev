@@ -22,17 +22,17 @@
 .header__title {
   font-size: 3em;
 }
+.header_theme_dark {
+  color: #fff;
+}
 .main__text {
   color: greenyellow;
 }
-.page__header {
-  color: tomato;
-}
+
 .page_theme_dark {
   background-color: #000;
   color: #f5f5f5;
 }
-
-.header_theme_dark {
-  color: #fff;
+.page__header {
+  color: tomato;
 }
