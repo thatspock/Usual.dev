@@ -10,7 +10,10 @@
     "lint": "stylelint './src/**/*.css'",
     "lintfix": "stylelint './src/**/*.css' --fix",
     "checkAll": "npm run check && npm run lint",
-    "fixAll": "npm run format && npm run lintfix"
+    "fixAll": "npm run format && npm run lintfix",
+    "build": "gulp build",
+    "dev": "gulp",
+    "fixAndBuild": "npm run fixAll && npm run build"
   },
   "author": "",
   "license": "ISC",
@@ -18,6 +21,7 @@
     "browser-sync": "^2.29.1",
     "del": "^6.0.0",
     "gulp": "^4.0.2",
+    "gulp-clean-css": "^4.3.0",
     "gulp-concat-css": "^3.1.0",
     "gulp-plumber": "^1.2.1",
     "prettier": "^2.8.7",
