@@ -1,11 +1,11 @@
 .footer {
   width: 100%;
 }
-.main {
-  flex-grow: 1;
-}
 .header {
   width: 100%;
+}
+.main {
+  flex-grow: 1;
 }
 .page {
   display: flex;
@@ -19,18 +19,18 @@
 .footer__copyright {
   text-align: right;
 }
-.main__text {
-  color: greenyellow;
-}
-
 .header__title {
   font-size: 3em;
 }
 .header_theme_dark {
   color: #fff;
 }
-.page__header {
+.main__text {
   color: greenyellow;
+}
+
+.page__header {
+  color: olivedrab;
 }
 .page_theme_dark {
   background-color: #000;
