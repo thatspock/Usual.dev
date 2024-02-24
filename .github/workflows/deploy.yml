@@ -22,6 +22,9 @@ jobs:
     - name: Build project
       run: npm run build
 
+    - name: List working directory contents
+      run: ls -la
+      
     - name: Setup SSH known_hosts
       run: |
         mkdir -p ~/.ssh
@@ -37,5 +40,4 @@ jobs:
         username: ${{ secrets.SSH_USERNAME }}
         key: ${{ secrets.SSH_KEY }}
         script: |
-          ls -la ./dist
-          scp -r ./dist ***@***:/var/www/usual/Usual.dev/
+          scp -r ./dist/ ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:/var/www/usual/Usual.dev/
