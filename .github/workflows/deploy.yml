@@ -22,11 +22,6 @@ jobs:
     - name: Fix errors and build project
       run: npm run fixAndBuild # Использует ваш новый скрипт для исправления и сборки
 
-    - name: Setup SSH known_hosts
-      run: |
-        mkdir -p ~/.ssh
-        ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
-
     - name: Deploy to DigitalOcean
       uses: appleboy/ssh-action@v0.1.2
       with:
@@ -34,6 +29,8 @@ jobs:
         username: ${{secrets.SSH_USERNAME}}
         key: ${{secrets.SSH_KEY}}
         script: |
+          mkdir -p ~/.ssh
+          ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
           cd /var/www/usual/Usual.dev
           rsync -avz --delete ./dist/ ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:/var/www/usual/Usual.dev/
           
