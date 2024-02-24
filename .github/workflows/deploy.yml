@@ -27,9 +27,6 @@ jobs:
         mkdir -p ~/.ssh
         ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
 
-    - name: List dist directory
-      run: ls -la ./dist/
-
     - name: Deploy to DigitalOcean
       uses: appleboy/ssh-action@v0.1.2
       with:
