@@ -15,7 +15,7 @@ jobs:
         username: ${{ secrets.SSH_USERNAME }}
         key: ${{ secrets.SSH_KEY }}
         script: |
-          cd /var/www/usual/Usual.dev
-          rm -rf *
-          git clone git@github.com:thatspock/Usual.dev.git
+          cd /var/www/usual
+          rm -rf Usual.dev
+          git clone git@github.com:thatspock/Usual.dev.git Usual.dev
           echo 'Deployment successful to digital ocean'
