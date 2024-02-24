@@ -29,8 +29,8 @@ jobs:
         username: ${{secrets.SSH_USERNAME}}
         key: ${{secrets.SSH_KEY}}
         script: |
+          mkdir -p ~/.ssh
+          ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
           cd /var/www/usual/Usual.dev
-          # Сюда можно добавить команды для удаления старых файлов, если это необходимо
-          # Например, можно использовать rsync для синхронизации файлов сборки
-          rsync -avz --delete ./dist/ root@159.89.99.171:/var/www/usual/Usual.dev/
-          # Обязательно замените ./dist/ на путь к вашей папке с результатами сборки, если он отличается
+          rsync -avz --delete ./dist/ ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:/var/www/usual/Usual.dev/
+          
