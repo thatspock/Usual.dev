@@ -1,10 +1,10 @@
-.header {
+.footer {
   width: 100%;
 }
 .main {
   flex-grow: 1;
 }
-.footer {
+.header {
   width: 100%;
 }
 .page {
@@ -16,21 +16,21 @@
   padding: 20px;
   box-sizing: border-box;
 }
+.footer__copyright {
+  text-align: right;
+}
+.main__text {
+  color: greenyellow;
+}
+
 .header__title {
   font-size: 3em;
 }
 .header_theme_dark {
   color: #fff;
 }
-.main__text {
-  color: greenyellow;
-}
-
-.footer__copyright {
-  text-align: right;
-}
 .page__header {
-  color: tomato;
+  color: greenyellow;
 }
 .page_theme_dark {
   background-color: #000;
