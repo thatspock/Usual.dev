@@ -31,6 +31,6 @@ jobs:
         script: |
           mkdir -p ~/.ssh
           ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
-          cd /var/www/usual/Usual.dev
+          cd /github/workspace
           rsync -avz --delete ./dist/ ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:/var/www/usual/Usual.dev/
           
