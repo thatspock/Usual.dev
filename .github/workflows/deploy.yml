@@ -6,31 +6,32 @@ on:
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
-    
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
-      
+
     - name: Set up Node.js
       uses: actions/setup-node@v1
       with:
-        node-version: '14' # Можно изменить на версию Node.js, которая требуется для вашего проекта
+        node-version: '14'
 
     - name: Install dependencies
       run: npm install
-      
-    - name: Fix errors and build project
-      run: npm run fixAndBuild # Использует ваш новый скрипт для исправления и сборки
+
+    - name: Build project
+      run: npm run build
+
+    - name: Setup SSH known_hosts
+      run: |
+        mkdir -p ~/.ssh
+        ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
 
     - name: Deploy to DigitalOcean
       uses: appleboy/ssh-action@v0.1.2
       with:
-        host: ${{secrets.SSH_HOST}}
-        username: ${{secrets.SSH_USERNAME}}
-        key: ${{secrets.SSH_KEY}}
+        host: ${{ secrets.SSH_HOST }}
+        username: ${{ secrets.SSH_USERNAME }}
+        key: ${{ secrets.SSH_KEY }}
         script: |
-          mkdir -p ~/.ssh
-          ssh-keyscan -H ${{ secrets.SSH_HOST }} >> ~/.ssh/known_hosts
-          cd /var/www/usual/Usual.dev
           rsync -avz --delete ./dist/ ${{ secrets.SSH_USERNAME }}@${{ secrets.SSH_HOST }}:/var/www/usual/Usual.dev/
-          
